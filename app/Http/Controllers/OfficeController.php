@@ -118,7 +118,21 @@ class OfficeController extends Controller
     public function getReviews($id){
         $office = Office::find($id);
         $reviews = $office->reviews;
-        return $reviews;
+
+        // Transforma los datos de reseñas y agrega el atributo 'isEditing'
+        $transformedReviews = $reviews->map(function ($review) {
+            return [
+                'id' => $review->id,
+                'user_id' => $review->user_id,
+                'office_id' => $review->office_id,
+                'review' => $review->review,
+                'created_at' => $review->created_at,
+                'isEditing' => false, // Agrega el atributo 'isEditing'
+            ];
+        });
+
+        return $transformedReviews;
+
     }
 
 }

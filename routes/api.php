@@ -30,3 +30,6 @@ Route::get('office/tags/{id}', [App\Http\Controllers\OfficeController::class, 'g
 
 //reviews
 Route::apiResource('reviews', App\Http\Controllers\ReviewsController::class);
+
+//Reservation
+Route::apiResource('reservations', App\Http\Controllers\ReservationsController::class);

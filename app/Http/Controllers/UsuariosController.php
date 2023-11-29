@@ -57,8 +57,16 @@ class UsuariosController extends Controller
     public function show($id)
     {
         //
-        $user = User::findorfail($id);
-        return $user;
+        $response = User::findorfail($id);
+        if (isset($response)) {
+
+            return $response;
+
+        }
+        return response()->json([
+            'error' => true,
+            'message' => 'User not found'
+        ]);
     }
 
     /**
